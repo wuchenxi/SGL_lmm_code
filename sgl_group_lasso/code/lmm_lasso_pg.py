@@ -6,7 +6,7 @@ import scipy as SP
 import scipy.linalg as LA
 import scipy.optimize as OPT
 import pdb
-import matplotlib.pylab as PLT
+#import matplotlib.pylab as PLT
 import time
 import sys
 import numpy as NP
