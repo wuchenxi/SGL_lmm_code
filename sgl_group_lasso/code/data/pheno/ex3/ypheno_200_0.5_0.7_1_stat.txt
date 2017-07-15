@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "test_cv_0.py", line 11, in <module>
+    from pandas_plink import read_plink
+  File "/usr/local/lib/python2.7/dist-packages/pandas_plink/__init__.py", line 14, in <module>
+    from .read import read_plink
+  File "/usr/local/lib/python2.7/dist-packages/pandas_plink/read.py", line 6, in <module>
+    import pandas as pd
+  File "/usr/local/lib/python2.7/dist-packages/pandas/__init__.py", line 39, in <module>
+    from pandas.core.api import *
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/api.py", line 10, in <module>
+    from pandas.core.groupby import Grouper
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/groupby.py", line 18, in <module>
+    from pandas.core.frame import DataFrame
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/frame.py", line 43, in <module>
+    from pandas.computation.eval import eval as _eval
+  File "/usr/local/lib/python2.7/dist-packages/pandas/computation/eval.py", line 13, in <module>
+    from pandas.computation.engines import _engines
+  File "/usr/local/lib/python2.7/dist-packages/pandas/computation/engines.py", line 6, in <module>
+    import abc
+  File "/usr/local/lib/python2.7/dist-packages/matplotlib/externals/six.py", line 180, in find_module
+    def find_module(self, fullname, path=None):
+KeyboardInterrupt

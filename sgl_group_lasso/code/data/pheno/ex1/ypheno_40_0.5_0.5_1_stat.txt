@@ -1,0 +1,18 @@
+2017-07-15 17:27:15.677260 time: 103.97s	
+number of iteration: 999
+Traceback (most recent call last):
+  File "test_cv_0.py", line 103, in <module>
+    res1=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,mu2,group)
+  File "/home/guoyingjie/YANGGUOWEI/code1/lmm_lasso_pg.py", line 82, in train
+    S,U,ldelta0,monitor_nm = train_nullmodel(y,K,numintervals,ldeltamin,ldeltamax,debug=debug)
+  File "/home/guoyingjie/YANGGUOWEI/code1/lmm_lasso_pg.py", line 266, in train_nullmodel
+    nllgrid[i]=nLLeval(ldeltagrid[i],Uy,S);
+  File "/home/guoyingjie/YANGGUOWEI/code1/lmm_lasso_pg.py", line 225, in nLLeval
+    ldet = SP.sum(SP.log(Sd))
+  File "/usr/local/lib/python2.7/dist-packages/numpy/lib/scimath.py", line 261, in log
+    x = _fix_real_lt_zero(x)
+  File "/usr/local/lib/python2.7/dist-packages/numpy/lib/scimath.py", line 120, in _fix_real_lt_zero
+    if any(isreal(x) & (x < 0)):
+  File "/usr/local/lib/python2.7/dist-packages/numpy/lib/type_check.py", line 235, in isreal
+    return imag(x) == 0
+KeyboardInterrupt

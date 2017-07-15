@@ -1,0 +1,8 @@
+2017-07-15 17:27:15.813946 time: 102.71s	
+number of iteration: 999
+Traceback (most recent call last):
+  File "test_cv_0.py", line 103, in <module>
+    res1=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,mu2,group)
+  File "/home/guoyingjie/YANGGUOWEI/code1/lmm_lasso_pg.py", line 89, in train
+    SUX = SUX * SP.tile(Sdi_sqrt,(n_f,1)).T
+KeyboardInterrupt

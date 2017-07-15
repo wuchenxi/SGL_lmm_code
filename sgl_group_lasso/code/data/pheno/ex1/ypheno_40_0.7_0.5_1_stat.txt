@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "test_cv_0.py", line 11, in <module>
+    from pandas_plink import read_plink
+  File "/usr/local/lib/python2.7/dist-packages/pandas_plink/__init__.py", line 14, in <module>
+    from .read import read_plink
+  File "/usr/local/lib/python2.7/dist-packages/pandas_plink/read.py", line 6, in <module>
+    import pandas as pd
+  File "/usr/local/lib/python2.7/dist-packages/pandas/__init__.py", line 39, in <module>
+    from pandas.core.api import *
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/api.py", line 10, in <module>
+    from pandas.core.groupby import Grouper
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/groupby.py", line 18, in <module>
+    from pandas.core.frame import DataFrame
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/frame.py", line 39, in <module>
+    from pandas.core.series import Series
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/series.py", line 2747, in <module>
+    Series._add_series_or_dataframe_operations()
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/generic.py", line 5174, in _add_series_or_dataframe_operations
+    from pandas.core import window as rwindow
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/window.py", line 805, in <module>
+    class Rolling(_Rolling_and_Expanding):
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/window.py", line 877, in Rolling
+    @Substitution(name='rolling')
+  File "/usr/local/lib/python2.7/dist-packages/pandas/util/decorators.py", line 128, in __init__
+    def __init__(self, *args, **kwargs):
+KeyboardInterrupt
