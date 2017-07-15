@@ -10,66 +10,6 @@ import os
 import sys
 from pandas_plink import read_plink
 
-def get_group_idx(group_file):
-    results = []
-    file = open(group_file)
-    lines = file.readlines()
-    for line in lines:
-        info = line.split()
-        if 'gene' in info:
-            results.append([info[3], info[4]])
-    return SP.array(results).astype(int)
-
-def get_index(bim):
-    pos = list(bim['pos'])
-    index = [idx for idx in pos if idx != 0]
-    return SP.array(index).astype(int)
-
-def process_group(group_idx, idx):
-    n = len(group_idx)
-    total_idx = [[group_idx[i, 0], 'left-bound', i] for i in range(n)]
-
-    #Combination1
-    i = j = 0
-    while j < n:
-        while i < n and group_idx[i, 0] <= group_idx[j, 1]:
-            i += 1
-        if i < n:
-            total_idx.insert(i + j, [group_idx[j, 1], 'right-bound', j])
-        else:
-            total_idx.append([group_idx[j, 1], 'right-bound', j])
-        j += 1
-
-    #Combination2
-    i = j = 0
-    n = len(total_idx)
-    m = len(idx)
-    while j < m:
-        while i < n and total_idx[i][0] <= idx[j]:
-            i += 1
-        if i < n:
-            total_idx.insert(i + j, [idx[j], 'point'])
-        else:
-            total_idx.append([idx[j], 'point'])
-        j += 1
-
-    cur_inv = {}
-    results = []
-    for item in total_idx:
-        if item[1] == 'left-bound':
-            cur_inv[item[2]] = [0x7fffffff, 0]
-        elif item[1] == 'point':
-            for k in cur_inv.keys():
-                cur_inv[k] = [min(cur_inv[k][0], item[0]), max(cur_inv[k][1], item[0])]
-        elif item[1] == 'right-bound':
-            if cur_inv.has_key(item[2]):
-                results.append(cur_inv[item[2]])
-                cur_inv.pop(item[2])
-
-    return SP.array(results).astype(int)
-
-
-
 if __name__ == '__main__':
 
     if len(sys.argv) < 5:
@@ -93,19 +33,17 @@ if __name__ == '__main__':
     root = 'data'
     gene_file = os.path.join(root, sys.argv[1])
     kinship_file = os.path.join(root, sys.argv[2])
-    group_file = os.path.join(root, "gencode.v25lift37.basic.annotation.gtf")
-
+ 
     # load genotypes
     [bim, fam, G] = read_plink(gene_file)
 
     X = SP.array(G.compute()).astype(float)
 
     [n_f, n_s] = X.shape
-    for i in range(n_f):
+    for i in xrange(X.shape[0]):
         m = X[i].mean()
         std = X[i].std()
         X[i] = (X[i] - m) / std
-        print len(X[i])
     X = X.T
 
     # simulate phenotype
@@ -145,11 +83,8 @@ if __name__ == '__main__':
     #        idx += group[i]
     #    group = gp
     ################################################
-
-    group_idx = get_group_idx(group_file)
-    idx = get_index(bim)
-    group = process_group(group_idx, idx)
-
+    group = SP.array(list(csv.reader(open(os.path.join(root, sys.argv[1] + '_group.info'))))).astype(int)
+ 
     # Glasso Parameter selection by 5 fold cv
     if use_group_lasso:
         optmu = muinit
