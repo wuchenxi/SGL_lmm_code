@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "test_cv_0.py", line 11, in <module>
+    from pandas_plink import read_plink
+  File "/usr/local/lib/python2.7/dist-packages/pandas_plink/__init__.py", line 14, in <module>
+    from .read import read_plink
+  File "/usr/local/lib/python2.7/dist-packages/pandas_plink/read.py", line 6, in <module>
+    import pandas as pd
+  File "/usr/local/lib/python2.7/dist-packages/pandas/__init__.py", line 43, in <module>
+    from pandas.io.api import *
+  File "/usr/local/lib/python2.7/dist-packages/pandas/io/api.py", line 9, in <module>
+    from pandas.io.excel import ExcelFile, ExcelWriter, read_excel
+  File "/usr/local/lib/python2.7/dist-packages/pandas/io/excel.py", line 3, in <module>
+    """
+KeyboardInterrupt

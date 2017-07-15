@@ -1,0 +1,684 @@
+2017-07-15 10:53:05.924059 time: 9.37s	2017-07-15 10:53:15.206449 time: 9.04s	2017-07-15 10:53:24.622977 time: 9.18s	2017-07-15 10:53:33.766800 time: 8.86s	2017-07-15 10:53:43.009125 time: 8.95s	2017-07-15 10:53:52.174665 time: 8.88s	2017-07-15 10:54:01.515524 time: 9.06s	2017-07-15 10:54:11.068217 time: 9.27s	2017-07-15 10:54:20.268285 time: 8.90s	2017-07-15 10:54:29.777123 time: 9.22s	2017-07-15 10:54:39.507315 time: 9.43s	2017-07-15 10:54:49.148588 time: 9.35s	2017-07-15 10:54:58.896734 time: 9.46s	2017-07-15 10:55:08.637436 time: 9.44s	2017-07-15 10:55:18.364771 time: 9.43s	2017-07-15 10:55:28.180512 time: 9.53s	2017-07-15 10:55:37.930337 time: 9.46s	2017-07-15 10:55:47.888914 time: 9.67s	2017-07-15 10:55:57.928802 time: 9.73s	2017-07-15 10:56:07.825431 time: 9.59s	2017-07-15 10:56:17.990519 time: 9.85s	2017-07-15 10:56:27.959814 time: 9.69s	2017-07-15 10:56:37.751680 time: 9.52s	2017-07-15 10:56:47.750253 time: 9.71s	2017-07-15 10:56:57.362814 time: 9.33s	2017-07-15 10:57:07.111961 time: 9.51s	2017-07-15 10:57:16.967689 time: 9.62s	2017-07-15 10:57:26.492685 time: 9.23s	2017-07-15 10:57:35.671773 time: 8.89s	2017-07-15 10:57:44.721421 time: 8.76s	2017-07-15 10:57:48.124036 time: 3.12s	2017-07-15 10:57:53.286467 time: 4.92s	2017-07-15 10:57:57.707215 time: 4.13s	2017-07-15 10:58:01.844022 time: 3.86s	2017-07-15 10:58:06.438123 time: 4.29s	2017-07-15 10:58:15.701804 time: 9.03s	2017-07-15 10:58:25.342400 time: 9.35s	2017-07-15 10:58:35.139644 time: 9.51s	2017-07-15 10:58:44.913216 time: 9.49s	2017-07-15 10:58:54.727603 time: 9.53s	2017-07-15 10:59:04.407205 time: 9.39s	2017-07-15 10:59:14.114888 time: 9.43s	2017-07-15 10:59:23.767470 time: 9.36s	2017-07-15 10:59:33.484602 time: 9.42s	2017-07-15 10:59:43.502115 time: 9.69s	2017-07-15 10:59:53.672810 time: 9.94s	2017-07-15 11:00:03.960219 time: 9.99s	2017-07-15 11:00:14.314318 time: 10.07s	2017-07-15 11:00:24.548181 time: 9.95s	2017-07-15 11:00:34.672793 time: 9.85s	2017-07-15 11:00:44.765697 time: 9.82s	2017-07-15 11:00:54.919626 time: 9.87s	2017-07-15 11:01:05.014093 time: 9.81s	2017-07-15 11:01:15.266909 time: 9.96s	2017-07-15 11:01:25.408643 time: 9.86s	2017-07-15 11:01:35.680486 time: 9.98s	2017-07-15 11:01:46.330064 time: 10.36s	2017-07-15 11:01:56.794653 time: 10.17s	2017-07-15 11:02:07.176675 time: 10.09s	2017-07-15 11:02:17.550431 time: 10.11s	2017-07-15 11:02:28.123948 time: 10.27s	2017-07-15 11:02:38.447023 time: 10.10s	2017-07-15 11:02:48.886776 time: 10.19s	2017-07-15 11:02:59.179870 time: 10.05s	2017-07-15 11:03:09.599889 time: 10.16s	2017-07-15 11:03:13.227692 time: 3.32s	2017-07-15 11:03:19.068688 time: 5.56s	2017-07-15 11:03:23.971226 time: 4.62s	2017-07-15 11:03:28.999062 time: 4.75s	2017-07-15 11:03:34.377200 time: 5.10s	2017-07-15 11:03:45.077979 time: 10.43s	2017-07-15 11:03:55.793101 time: 10.44s	2017-07-15 11:04:06.489468 time: 10.42s	2017-07-15 11:04:17.111725 time: 10.35s	2017-07-15 11:04:27.203794 time: 9.81s	2017-07-15 11:04:37.054522 time: 9.56s	2017-07-15 11:04:46.773063 time: 9.41s	2017-07-15 11:04:56.578449 time: 9.50s	2017-07-15 11:05:06.472591 time: 9.60s	2017-07-15 11:05:16.367682 time: 9.61s	2017-07-15 11:05:26.271633 time: 9.63s	2017-07-15 11:05:36.107681 time: 9.56s	2017-07-15 11:05:46.012194 time: 9.61s	2017-07-15 11:05:55.943334 time: 9.65s	2017-07-15 11:06:05.876161 time: 9.65s	2017-07-15 11:06:15.820449 time: 9.68s	2017-07-15 11:06:25.853109 time: 9.79s	2017-07-15 11:06:35.760077 time: 9.62s	2017-07-15 11:06:45.525666 time: 9.48s	2017-07-15 11:06:55.391839 time: 9.58s	2017-07-15 11:07:05.449695 time: 9.80s	2017-07-15 11:07:15.439143 time: 9.72s	2017-07-15 11:07:25.267430 time: 9.57s	2017-07-15 11:07:35.002024 time: 9.49s	2017-07-15 11:07:44.806783 time: 9.55s	2017-07-15 11:07:54.767189 time: 9.70s	2017-07-15 11:08:04.798937 time: 9.78s	2017-07-15 11:08:15.151394 time: 10.08s	2017-07-15 11:08:25.235317 time: 9.84s	2017-07-15 11:08:35.549865 time: 10.08s	2017-07-15 11:08:39.382351 time: 3.55s	2017-07-15 11:08:44.886725 time: 5.28s	2017-07-15 11:08:49.667191 time: 4.53s	2017-07-15 11:08:53.937878 time: 4.00s	2017-07-15 11:08:58.681469 time: 4.47s	2017-07-15 11:09:08.169454 time: 9.20s	2017-07-15 11:09:18.035798 time: 9.59s	2017-07-15 11:09:27.877531 time: 9.55s	2017-07-15 11:09:37.815858 time: 9.65s	2017-07-15 11:09:47.722101 time: 9.65s	2017-07-15 11:09:57.633914 time: 9.68s	2017-07-15 11:10:07.475227 time: 9.57s	2017-07-15 11:10:17.452461 time: 9.70s	2017-07-15 11:10:27.447400 time: 9.71s	2017-07-15 11:10:37.358631 time: 9.67s	2017-07-15 11:10:47.382852 time: 9.75s	2017-07-15 11:10:57.184320 time: 9.51s	2017-07-15 11:11:06.701579 time: 9.22s	2017-07-15 11:11:16.226059 time: 9.25s	2017-07-15 11:11:25.800852 time: 9.28s	2017-07-15 11:11:35.562004 time: 9.49s	2017-07-15 11:11:45.345713 time: 9.52s	2017-07-15 11:11:55.131644 time: 9.55s	2017-07-15 11:12:04.883837 time: 9.49s	2017-07-15 11:12:14.468081 time: 9.33s	2017-07-15 11:12:23.903758 time: 9.18s	2017-07-15 11:12:33.219244 time: 9.07s	2017-07-15 11:12:42.481592 time: 8.98s	2017-07-15 11:12:51.782306 time: 9.04s	2017-07-15 11:13:01.085005 time: 9.07s	2017-07-15 11:13:09.817398 time: 8.46s	2017-07-15 11:13:19.091641 time: 9.03s	2017-07-15 11:13:28.495621 time: 9.14s	2017-07-15 11:13:37.866913 time: 9.12s	2017-07-15 11:13:47.733751 time: 9.61s	
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.1 0.1 818.521362371
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.1 0.3 826.344990345
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.1 0.9 832.283010474
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.1 2.7 839.701414887
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.1 8.1 849.317475815
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.1 24.3 856.723444883
+
+number of iteration: 297
+
+number of iteration: 529
+
+number of iteration: 441
+
+number of iteration: 403
+
+number of iteration: 445
+0.1 72.9 845.990444239
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.3 0.1 815.825414506
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.3 0.3 823.129057958
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.3 0.9 832.08961611
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.3 2.7 840.728476447
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.3 8.1 849.848476854
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.3 24.3 856.64855143
+
+number of iteration: 297
+
+number of iteration: 527
+
+number of iteration: 412
+
+number of iteration: 403
+
+number of iteration: 445
+0.3 72.9 845.750704114
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.9 0.1 817.654400509
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.9 0.3 823.464142126
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.9 0.9 832.427166228
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.9 2.7 842.125569201
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.9 8.1 851.244161114
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.9 24.3 856.707776105
+
+number of iteration: 297
+
+number of iteration: 496
+
+number of iteration: 412
+
+number of iteration: 352
+
+number of iteration: 445
+0.9 72.9 844.870476839
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+2.7 0.1 827.943882138
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+2.7 0.3 830.035839289
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+2.7 0.9 834.695727283
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+2.7 2.7 843.7585522
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+2.7 8.1 852.281593953
+
+number of iteration: 924
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+2.7 24.3 8552017-07-15 11:13:51.053931 time: 3.08s	2017-07-15 11:13:56.345749 time: 5.07s	2017-07-15 11:14:00.654596 time: 4.08s	2017-07-15 11:14:04.670836 time: 3.71s	2017-07-15 11:14:09.210980 time: 4.28s	2017-07-15 11:14:18.382847 time: 8.92s	2017-07-15 11:14:27.704293 time: 9.07s	2017-07-15 11:14:36.976087 time: 9.01s	2017-07-15 11:14:46.194861 time: 8.98s	2017-07-15 11:14:55.454513 time: 9.02s	2017-07-15 11:15:04.596593 time: 8.91s	2017-07-15 11:15:13.951295 time: 9.11s	2017-07-15 11:15:23.461458 time: 9.23s	2017-07-15 11:15:33.055183 time: 9.25s	2017-07-15 11:15:42.583092 time: 9.24s	2017-07-15 11:15:52.662820 time: 9.81s	2017-07-15 11:16:02.700557 time: 9.75s	2017-07-15 11:16:12.675241 time: 9.70s	2017-07-15 11:16:22.508889 time: 9.55s	2017-07-15 11:16:31.765011 time: 8.96s	2017-07-15 11:16:41.193721 time: 9.15s	2017-07-15 11:16:50.341859 time: 8.87s	2017-07-15 11:16:59.454079 time: 8.77s	2017-07-15 11:17:08.645667 time: 8.87s	2017-07-15 11:17:17.856466 time: 8.88s	2017-07-15 11:17:27.083697 time: 8.91s	2017-07-15 11:17:36.250112 time: 8.87s	2017-07-15 11:17:45.563196 time: 9.00s	2017-07-15 11:17:54.809342 time: 8.90s	2017-07-15 11:18:04.075940 time: 8.95s	2017-07-15 11:18:09.765119 time: 5.36s	2017-07-15 11:18:19.159046 time: 9.07s	2017-07-15 11:18:28.768575 time: 9.34s	2017-07-15 11:18:36.961300 time: 7.93s	2017-07-15 11:18:45.734746 time: 8.52s	2017-07-15 11:18:48.466394 time: 2.47s	2017-07-15 11:18:53.732044 time: 5.01s	2017-07-15 11:18:57.869319 time: 3.90s	2017-07-15 11:19:01.605211 time: 3.48s	2017-07-15 11:19:05.796248 time: 3.94s	2017-07-15 11:19:15.302123 time: 9.25s	2017-07-15 11:19:24.761667 time: 9.22s	2017-07-15 11:19:34.695508 time: 9.68s	2017-07-15 11:19:44.760147 time: 9.83s	2017-07-15 11:19:54.977614 time: 9.93s	2017-07-15 11:20:05.071168 time: 9.80s	2017-07-15 11:20:15.252705 time: 9.89s	2017-07-15 11:20:25.434742 time: 9.89s	2017-07-15 11:20:35.596522 time: 9.87s	2017-07-15 11:20:45.807314 time: 9.91s	2017-07-15 11:20:55.972326 time: 9.87s	2017-07-15 11:21:05.778075 time: 9.52s	2017-07-15 11:21:15.671807 time: 9.60s	2017-07-15 11:21:25.358734 time: 9.38s	2017-07-15 11:21:35.075836 time: 9.43s	2017-07-15 11:21:44.680831 time: 9.31s	2017-07-15 11:21:54.521957 time: 9.56s	2017-07-15 11:22:04.258061 time: 9.50s	2017-07-15 11:22:14.382741 time: 9.84s	2017-07-15 11:22:24.131109 time: 9.46s	2017-07-15 11:22:33.991491 time: 9.57s	2017-07-15 11:22:43.730702 time: 9.47s	2017-07-15 11:22:53.608194 time: 9.61s	2017-07-15 11:23:03.450462 time: 9.56s	2017-07-15 11:23:13.299629 time: 9.56s	2017-07-15 11:23:18.977824 time: 5.40s	2017-07-15 11:23:29.036247 time: 9.78s	2017-07-15 11:23:36.694872 time: 7.40s	2017-07-15 11:23:43.860770 time: 6.92s	2017-07-15 11:23:51.598222 time: 7.47s	2017-07-15 11:23:54.376024 time: 2.50s	2017-07-15 11:23:58.972008 time: 4.37s	2017-07-15 11:24:02.647692 time: 3.42s	2017-07-15 11:24:05.683436 time: 2.78s	2017-07-15 11:24:09.377171 time: 3.40s	2017-07-15 11:24:19.459943 time: 9.79s	2017-07-15 11:24:29.760365 time: 10.03s	2017-07-15 11:24:40.120652 time: 10.07s	2017-07-15 11:24:50.355787 time: 9.96s	2017-07-15 11:25:00.293186 time: 9.64s	2017-07-15 11:25:09.928027 time: 9.38s	2017-07-15 11:25:19.473094 time: 9.29s	2017-07-15 11:25:29.037611 time: 9.31s	2017-07-15 11:25:38.590968 time: 9.33s	2017-07-15 11:25:47.997852 time: 9.13s	2017-07-15 11:25:57.430887 time: 9.16s	2017-07-15 11:26:06.954944 time: 9.24s	2017-07-15 11:26:15.932723 time: 8.75s	2017-07-15 11:26:25.348304 time: 9.09s	2017-07-15 11:26:35.642318 time: 10.02s	2017-07-15 11:26:45.238894 time: 9.31s	2017-07-15 11:26:54.776662 time: 9.28s	2017-07-15 11:27:04.261533 time: 9.24s	2017-07-15 11:27:13.751872 time: 9.26s	2017-07-15 11:27:23.242267 time: 9.23s	2017-07-15 11:27:31.036299 time: 7.62s	2017-07-15 11:27:40.550947 time: 9.30s	2017-07-15 11:27:49.952539 time: 9.16s	2017-07-15 11:27:59.499389 time: 9.32s	2017-07-15 11:28:09.074211 time: 9.35s	2017-07-15 11:28:13.334881 time: 4.03s	2017-07-15 11:28:21.399714 time: 7.83s	2017-07-15 11:28:27.078555 time: 5.43s	2017-07-15 11:28:32.565166 time: 5.21s	2017-07-15 11:28:37.754996 time: 4.92s	2017-07-15 11:28:40.085582 time: 2.10s	2017-07-15 11:28:44.108274 time: 3.78s	2017-07-15 11:28:47.127022 time: 2.79s	2017-07-15 11:28:49.595709 time: 2.22s	2017-07-15 11:28:52.612962 time: 2.79s	2017-07-15 11:29:03.914201 time: 11.06s	2017-07-15 11:29:15.358269 time: 11.13s	2017-07-15 11:29:26.459333 time: 10.92s	2017-07-15 11:29:37.995495 time: 11.37s	2017-07-15 11:29:49.582601 time: 11.45s	2017-07-15 11:30:01.081564 time: 11.36s	2017-07-15 11:30:12.660078 time: 11.43s	2017-07-15 11:30:24.535349 time: 11.72s	2017-07-15 11:30:36.155363 time: 11.44s	2017-07-15 11:30:48.008783 time: 11.67s	2017-07-15 11:30:59.263261 time: 11.07s	2017-07-15 11:30:59.313941 time: 115.19s2017-07-15 11:31:26.921214 time: 5.67s	2017-07-15 11:31:33.098463 time: 6.00s	2017-07-15 11:31:39.745647 time: 6.46s	2017-07-15 11:31:47.056257 time: 7.12s	2017-07-15 11:31:53.655033 time: 6.44s	2017-07-15 11:32:00.110904 time: 6.25s	2017-07-15 11:32:08.141256 time: 7.71s	2017-07-15 11:32:16.097264 time: 7.62s	2017-07-15 11:32:24.130758 time: 7.70s	2017-07-15 11:32:32.219102 time: 7.75s	.958523597
+
+number of iteration: 270
+
+number of iteration: 493
+
+number of iteration: 409
+
+number of iteration: 352
+
+number of iteration: 414
+2.7 72.9 842.491172267
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+8.1 0.1 838.089943998
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+8.1 0.3 838.807403457
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+8.1 0.9 841.006724731
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+8.1 2.7 845.608413944
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+8.1 8.1 850.59350609
+
+number of iteration: 572
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 842
+
+number of iteration: 931
+8.1 24.3 850.595324303
+
+number of iteration: 206
+
+number of iteration: 508
+
+number of iteration: 385
+
+number of iteration: 327
+
+number of iteration: 390
+8.1 72.9 835.528510729
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+24.3 0.1 829.65853499
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+24.3 0.3 829.785252104
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+24.3 0.9 829.856302428
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+24.3 2.7 830.541717444
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+24.3 8.1 830.809812776
+
+number of iteration: 538
+
+number of iteration: 999
+
+number of iteration: 759
+
+number of iteration: 705
+
+number of iteration: 789
+24.3 24.3 828.038730074
+
+number of iteration: 202
+
+number of iteration: 421
+
+number of iteration: 314
+
+number of iteration: 234
+
+number of iteration: 292
+24.3 72.9 813.791779029
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+72.9 0.1 777.568401061
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+72.9 0.3 777.569987653
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+72.9 0.9 777.42778868
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+72.9 2.7 777.144462833
+
+number of iteration: 828
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+72.9 8.1 775.428138393
+
+number of iteration: 388
+
+number of iteration: 821
+
+number of iteration: 564
+
+number of iteration: 561
+
+number of iteration: 498
+72.9 24.3 766.225347255
+
+number of iteration: 176
+
+number of iteration: 361
+
+number of iteration: 248
+
+number of iteration: 177
+
+number of iteration: 235
+72.9 72.9 740.161829442
+0.1 24.3 856.723444883
+
+number of iteration: 999
+0.95090288659
+Iteration 0
+
+number of iteration: 999
+Iteration 1
+
+number of iteration: 999
+Iteration 2
+
+number of iteration: 999
+Iteration 3
+
+number of iteration: 999
+Iteration 4
+
+number of iteration: 999
+Iteration 5
+
+number of iteration: 999
+Iteration 6
+
+number of iteration: 999
+Iteration 7
+
+number of iteration: 999
+Iteration 8
+
+number of iteration: 999
+Iteration 9
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.1 804.843506104
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.2017-07-15 11:32:40.381563 time: 7.80s	2017-07-15 11:32:48.355387 time: 7.64s	2017-07-15 11:32:56.331185 time: 7.65s	2017-07-15 11:33:04.309580 time: 7.68s	2017-07-15 11:33:12.226783 time: 7.62s	2017-07-15 11:33:20.308216 time: 7.77s	2017-07-15 11:33:28.778003 time: 8.17s	2017-07-15 11:33:37.184264 time: 8.15s	2017-07-15 11:33:45.629871 time: 8.20s	2017-07-15 11:33:53.891611 time: 7.99s	2017-07-15 11:34:01.868720 time: 7.74s	2017-07-15 11:34:09.807964 time: 7.71s	2017-07-15 11:34:17.775119 time: 7.73s	2017-07-15 11:34:25.824301 time: 7.82s	2017-07-15 11:34:33.842048 time: 7.79s	2017-07-15 11:34:42.111524 time: 8.05s	2017-07-15 11:34:50.221722 time: 7.89s	2017-07-15 11:34:58.208877 time: 7.67s	2017-07-15 11:35:06.165177 time: 7.66s	2017-07-15 11:35:14.110967 time: 7.62s	2017-07-15 11:35:21.813428 time: 7.48s	2017-07-15 11:35:29.551983 time: 7.53s	2017-07-15 11:35:37.222187 time: 7.46s	2017-07-15 11:35:44.880409 time: 7.45s	2017-07-15 11:35:52.570160 time: 7.48s	2017-07-15 11:36:02.022276 time: 9.19s	2017-07-15 11:36:11.689257 time: 9.33s	2017-07-15 11:36:21.187719 time: 9.38s	2017-07-15 11:36:30.698606 time: 9.39s	2017-07-15 11:36:40.364468 time: 9.55s	2017-07-15 11:36:50.211753 time: 9.68s	2017-07-15 11:37:00.112543 time: 9.73s	2017-07-15 11:37:09.927344 time: 9.65s	2017-07-15 11:37:19.745416 time: 9.65s	2017-07-15 11:37:29.583802 time: 9.67s	2017-07-15 11:37:39.277738 time: 9.53s	2017-07-15 11:37:39.325604 time: 97.10s3 808.71079799
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+0.9 814.1883608
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+2.7 826.591596574
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+8.1 837.731601745
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+24.3 829.581730624
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+
+number of iteration: 999
+72.9 777.619521649
+8.1 837.731601745
+
+number of iteration: 999
+0.927074765865
+Iteration 0
+
+number of iteration: 999
+Iteration 1
+
+number of iteration: 999
+Iteration 2
+
+number of iteration: 999
+Iteration 3
+
+number of iteration: 999
+Iteration 4
+
+number of iteration: 999
+Iteration 5
+
+number of iteration: 999
+Iteration 6
+
+number of iteration: 999
+Iteration 7
+
+number of iteration: 999
+Iteration 8
+
+number of iteration: 999
+Iteration 9
+
+number of iteration: 999

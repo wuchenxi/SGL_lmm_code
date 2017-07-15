@@ -1,0 +1,10 @@
+2017-07-15 17:27:10.771995 time: 100.28s	
+number of iteration: 999
+Traceback (most recent call last):
+  File "test_cv_0.py", line 103, in <module>
+    res1=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,mu2,group)
+  File "/home/guoyingjie/YANGGUOWEI/code1/lmm_lasso_pg.py", line 93, in train
+    w= train_lasso(SUX,SUy,mu,mu2,group,rho,alpha,debug=debug)
+  File "/home/guoyingjie/YANGGUOWEI/code1/lmm_lasso_pg.py", line 192, in train_lasso
+    newval=0.5*((SP.dot(X,wn)-y)**2).sum()
+KeyboardInterrupt

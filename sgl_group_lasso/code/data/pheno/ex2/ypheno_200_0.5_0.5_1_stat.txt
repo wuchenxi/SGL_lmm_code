@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "test_cv_0.py", line 11, in <module>
+    from pandas_plink import read_plink
+  File "/usr/local/lib/python2.7/dist-packages/pandas_plink/__init__.py", line 14, in <module>
+    from .read import read_plink
+  File "/usr/local/lib/python2.7/dist-packages/pandas_plink/read.py", line 6, in <module>
+    import pandas as pd
+  File "/usr/local/lib/python2.7/dist-packages/pandas/__init__.py", line 39, in <module>
+    from pandas.core.api import *
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/api.py", line 10, in <module>
+    from pandas.core.groupby import Grouper
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/groupby.py", line 18, in <module>
+    from pandas.core.frame import DataFrame
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/frame.py", line 32, in <module>
+    from pandas.core.generic import NDFrame, _shared_docs
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/generic.py", line 17, in <module>
+    from pandas.core.internals import BlockManager
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/internals.py", line 36, in <module>
+    from pandas.sparse.array import _maybe_to_sparse, SparseArray
+  File "/usr/local/lib/python2.7/dist-packages/pandas/sparse/array.py", line 22, in <module>
+    import pandas.core.ops as ops
+  File "/usr/local/lib/python2.7/dist-packages/pandas/core/ops.py", line 266, in <module>
+    class _TimeOp(object):
+KeyboardInterrupt

@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "test_cv_0.py", line 11, in <module>
+    from pandas_plink import read_plink
+  File "/usr/local/lib/python2.7/dist-packages/pandas_plink/__init__.py", line 10, in <module>
+    from pkg_resources import DistributionNotFound as _DistributionNotFound
+  File "/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py", line 2953, in <module>
+    @_call_aside
+  File "/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py", line 2939, in _call_aside
+    f(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py", line 2981, in _initialize_master_working_set
+    dist.activate(replace=False)
+  File "/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py", line 2513, in activate
+    fixup_namespace_packages(self.location)
+  File "/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py", line 2108, in fixup_namespace_packages
+    subpath = _handle_ns(package, path_item)
+  File "/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py", line 2032, in _handle_ns
+    loader = importer.find_module(packageName)
+  File "/usr/lib/python2.7/pkgutil.py", line 184, in find_module
+    path = [os.path.realpath(self.path)]
+  File "/usr/lib/python2.7/posixpath.py", line 376, in realpath
+    return abspath(path)
+  File "/usr/lib/python2.7/posixpath.py", line 366, in abspath
+    return normpath(path)
+  File "/usr/lib/python2.7/posixpath.py", line 348, in normpath
+    new_comps.append(comp)
+KeyboardInterrupt
