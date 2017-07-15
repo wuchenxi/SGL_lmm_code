@@ -6,7 +6,6 @@ import scipy as SP
 import scipy.linalg as LA
 import scipy.optimize as OPT
 import pdb
-#import matplotlib.pylab as PLT
 import time
 import sys
 import numpy as NP
@@ -51,7 +50,7 @@ def stability_selection(X,K,y,mu,mu2,group,n_reps,f_subset,**kwargs):
     sys.stderr.write( '{} time: {:.2f}s'.format(datetime.now(), time_diff) )
     return freq, weight
 
-def train(X,K,y,mu,mu2,group=[[0,1],[2,3,4]],numintervals=100,ldeltamin=-5,ldeltamax=5,rho=1,alpha=1,debug=False):
+def train(X,K,y,mu,mu2,group,numintervals=100,ldeltamin=-5,ldeltamax=5,debug=False):
     """
     train linear mixed model lasso
 
@@ -149,7 +148,7 @@ def predict(y_t,X_t,X_v,K_tt,K_vt,ldelta,w):
 helper functions
 """
 
-def train_lasso(X,y,mu,mu2,group,rho=1,alpha=1,max_iter=1000,abstol=1E-4,reltol=1E-2,zero_threshold=1E-3,debug=False):
+def train_lasso(X,y,mu,mu2,group,rho=1,alpha=1,max_iter=1000,zero_threshold=1E-3,debug=False):
     """
     train lasso via PG:
     min_w  0.5*sum((y-Xw)**2) + mu*|z| + mu2*|z|_2
@@ -327,7 +326,7 @@ def proximal_gradient(w,kappa,kappa2,gp):
     for i in xrange(len(gp)):
         vgn=SP.dot(s[gp[i][0]:gp[i][1]],s[gp[i][0]:gp[i][1]])**0.5#this is 2 times faster than LA.norm 
         if vgn == 0: ratio = 0
-        else: ratio = max((vgn-kappa2)/vgn, 0)
+        else: ratio = max((vgn-kappa2*SP.sqrt(gp[i][1]-gp[i][0]))/vgn, 0)
 #        if vgn>kappa2:
 #            ratio=(vgn-kappa2)/vgn
 #        else:
@@ -337,24 +336,6 @@ def proximal_gradient(w,kappa,kappa2,gp):
     return s
 
 
-def lasso_obj(X,y,w,mu,mu2,gp):
-    """
-    evaluates lasso objective: 0.5*sum((y-Xw)**2) + mu*|z|
-
-    Input:
-    X: design matrix: n_s x n_f
-    y: outcome:  n_s x 1
-    mu: l1-penalty parameter
-    w: weights: n_f x 1
-    z: slack variables: n_fx1
-
-    Output:
-    obj
-    """
-    r=0.5*((SP.dot(X,w)-y)**2).sum() + mu*SP.absolute(w).sum()
-    for group in gp:
-        r+=LA.norm(w[group[0]:group[1]])*mu2
-    return r
 
 
     

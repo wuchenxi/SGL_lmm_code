@@ -55,24 +55,21 @@ if __name__ == '__main__':
 
 
     # init
-    debug = False
-    n_train = int(n_s*0.7)
-    n_test = n_s - n_train
-    n_reps = 10
-    f_subset = 0.7
+    debug = False 
+    n_reps = 100  # times of stability_selection
+    f_subset = 0.9 # the percentage of samples for stability_selection
 
-    muinit = 0.1
-    mu2init = 0.1
-    ps_step = 3
+    muinit = 10
+    mu2init = 10
+    ps_step = 0.3
 
 
     # split into training and testing
     train_idx = SP.random.permutation(SP.arange(n_s))
-    test_idx = train_idx[n_train:]
-    train_idx = train_idx[:n_train]
+    
 
     # calculate kernel
-    # the first 2622 SNP are in the first chromosome which we are testing
+    # X0 is P(# of SNPs)*N(sample size) 
     XO = SP.array(list(csv.reader(open(kinship_file, 'rb'),
                                 delimiter=','))).astype(float) 
     K = 1./XO.shape[0]*SP.dot(XO.T,XO)
@@ -97,9 +94,9 @@ if __name__ == '__main__':
                 mu=muinit*(ps_step**j1)
                 mu2=mu2init*(ps_step**j2)
                 cor=0
-                for k in range(5): #5 for full 5 fold CV
-                    train1_idx=SP.concatenate((train_idx[:int(n_train*k*0.2)],train_idx[int(n_train*(k+1)*0.2):n_train]))
-                    valid_idx=train_idx[int(n_train*k*0.2):int(n_train*(k+1)*0.2)]
+                for k in range(10): #10 for full 10 fold CV
+                    train1_idx=SP.concatenate((train_idx[:int(n_s*k*0.1)],train_idx[int(n_s*(k+1)*0.1):n_s]))
+                    valid_idx=train_idx[int(n_s*k*0.1):int(n_s*(k+1)*0.1)]
                     res1=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,mu2,group)
                     w1=res1['weights']
                     yhat = lmm_lasso.predict(y[train1_idx],X[train1_idx,:],X[valid_idx,:],K[train1_idx][:,train1_idx],K[valid_idx][:,train1_idx],res1['ldelta0'],w1)
@@ -113,16 +110,7 @@ if __name__ == '__main__':
 
         print optmu, optmu2, optcor[0,0]
 
-        # train
-        res = lmm_lasso.train(X[train_idx],K[train_idx][:,train_idx],y[train_idx],optmu,optmu2,group)
-        w = res['weights']
-
-        # predict
-        ldelta0 = res['ldelta0']
-        yhat = lmm_lasso.predict(y[train_idx],X[train_idx,:],X[test_idx,:],K[train_idx][:,train_idx],K[test_idx][:,train_idx],ldelta0,w)
-        corr = 1./n_test * SP.dot(yhat.T-yhat.mean(),y[test_idx]-y[test_idx].mean())/(yhat.std()*y[test_idx].std())
-        print corr[0,0]
-
+        # stability_selection
         ss, weight = lmm_lasso.stability_selection(X, K, y, optmu, optmu2, group, n_reps, f_subset)
 
         result_ss = [(idx, ss[idx], weight[idx]) for idx in xrange(len(ss))]
@@ -139,10 +127,10 @@ if __name__ == '__main__':
         for j1 in range(7):
             mu=muinit*(ps_step**j1)
             cor=0
-            for k in range(5):
-                train1_idx=SP.concatenate((train_idx[:int(n_train*k*0.2)],
-                                           train_idx[int(n_train*(k+1)*0.2):n_train]))
-                valid_idx=train_idx[int(n_train*k*0.2):int(n_train*(k+1)*0.2)]
+            for k in range(10):
+                train1_idx=SP.concatenate((train_idx[:int(n_s*k*0.1)],
+                                           train_idx[int(n_s*(k+1)*0.1):n_train]))
+                valid_idx=train_idx[int(n_s*k*0.1):int(n_s*(k+1)*0.1)]
                 res1=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,0,[])
                 w1=res1['weights']
                 yhat = lmm_lasso.predict(y[train1_idx],X[train1_idx,:],X[valid_idx,:],K[train1_idx][:,train1_idx],K[valid_idx][:,train1_idx],res1['ldelta0'],w1)
@@ -154,17 +142,8 @@ if __name__ == '__main__':
                 optmu0=mu
 
         print optmu0, optcor[0,0]
-
-        # train
-        res = lmm_lasso.train(X[train_idx],K[train_idx][:,train_idx],y[train_idx],optmu0,0,[])
-        w=res['weights']
-
-        # predict
-        ldelta0 = res['ldelta0']
-        yhat = lmm_lasso.predict(y[train_idx],X[train_idx,:],X[test_idx,:],K[train_idx][:,train_idx],K[test_idx][:,train_idx],ldelta0,w)
-        corr = 1./n_test * SP.dot(yhat.T-yhat.mean(),y[test_idx]-y[test_idx].mean())/(yhat.std()*y[test_idx].std())
-        print corr[0,0]
-
+ 
+        #stability_selection
         ss2, weight2 = lmm_lasso.stability_selection(X, K, y, optmu0, 0, [], n_reps, f_subset)
 
         result_ss2 = [(idx, ss2[idx], weight2[idx]) for idx in xrange(len(ss2))]
