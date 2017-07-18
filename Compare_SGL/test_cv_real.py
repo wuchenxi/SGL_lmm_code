@@ -39,13 +39,10 @@ if __name__ == '__main__':
         X[i] = (X[i] - m) / std
     X = X.T
 
-#############################################################
-# TODO: Some method or file is need for PCA of plink data
     if has_pca:
         pca_x = SP.array(list(csv.reader(open(pca_x_file, 'rb'),
                                          delimiter=','))).astype(float)
         X = SP.column_stack((X, pca_x))
-##############################################################
 
     # simulate phenotype
     y = SP.array(list(fam['i'])).astype(float)
