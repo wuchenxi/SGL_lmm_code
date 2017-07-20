@@ -60,7 +60,7 @@ if __name__ == '__main__':
     muinit = 30
     mu2 = 0.1
     ps_step = 0.9
-    n_reps=5
+    n_reps=3
 
     # calculate kernel
     # the first 2622 SNP are in the first chromosome which we are testing
@@ -165,7 +165,7 @@ if __name__ == '__main__':
         
         result_ss = [(idx, freq[idx], weight[idx]) for idx in xrange(n_f)]
         result_ss.sort(key=lambda item: (-item[1], list(-item[2]), item[0]))
-        with open(ypheno_file.replace('.csv', '_L_result.csv'), 'w') as result_file:
+        with open(ypheno_file.replace('.csv', '_GroupL_result.csv'), 'w') as result_file:
             result_writer = csv.writer(result_file)
             for item in result_ss:
                 result_writer.writerow((item[0], item[1]))
