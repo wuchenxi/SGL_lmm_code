@@ -8,7 +8,7 @@ import pdb
 import lmm_lasso_pg as lmm_lasso
 import os
 import sys
-from pandas_plink import read_plink
+#from pandas_plink import read_plink
 
 if __name__ == '__main__':
 
@@ -60,6 +60,7 @@ if __name__ == '__main__':
     muinit = 30
     mu2 = 0.1
     ps_step = 0.9
+    n_reps=5
 
     # calculate kernel
     # the first 2622 SNP are in the first chromosome which we are testing
@@ -77,58 +78,103 @@ if __name__ == '__main__':
         idx += group[i]
     group = gp
 
-    # Glasso Parameter selection by 5 fold cv
     if use_lasso:
-        mu2 = 0
-        group = []
-
-    freq=SP.zeros(n_f)
-    weight=SP.zeros(n_f)
-    for k in range(20):
-        opterr=10000
-        optw=0
-        stop=2
-        w0=0
-        nm={}
-        mu=muinit
-        train_idx = SP.random.permutation(SP.arange(n_s))
-        for j in range(20):
-            mu*=ps_step
-            train1_idx=train_idx[:int(n_s*0.7)]
-            valid_idx=train_idx[int(n_s*0.7):]
-            res=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,mu2,group,w0=w0,null_model=nm)
-            w0=res['weights']
-            nm=res['null_model']
-            yhat = lmm_lasso.predict(y[train1_idx],X[train1_idx,:],X[valid_idx,:],K[train1_idx][:,train1_idx],K[valid_idx][:,train1_idx],res['ldelta0'],w0)
-            err = LA.norm(yhat-y[valid_idx])
-            print mu, err
-            if err<opterr:
-                optw=w0
-                opterr=err
-                stop=2
+        freq=SP.zeros(n_f)
+        weight=SP.zeros(n_f)
+        for k in range(20):
+            opterr=10000
+            optw=0
+            stop=2
+            w0=0
+            nm={}
+            mu=muinit
+            train_idx = SP.random.permutation(SP.arange(n_s))
+            for j in range(20):
+                mu*=ps_step
+                train1_idx=train_idx[:int(n_s*0.8)]
+                valid_idx=train_idx[int(n_s*0.8):]
+                res=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,0,[],w0=w0,null_model=nm)
+                w0=res['weights']
+                nm=res['null_model']
+                yhat = lmm_lasso.predict(y[train1_idx],X[train1_idx,:],X[valid_idx,:],K[train1_idx][:,train1_idx],K[valid_idx][:,train1_idx],res['ldelta0'],w0)
+                err = LA.norm(yhat-y[valid_idx])
+                print mu, err
+                if err<opterr:
+                    optw=w0
+                    opterr=err
+                    stop=2
+                else:
+                    stop-=1
+                if stop<=0:
+                    break
+            freq[(SP.nonzero(optw)[0])]+=1
+            weight=weight+SP.absolute(optw)
+        err1=0
+        err2=0
+        for i in xrange(n_f):
+            if i in idx:
+                if freq[i]<n_reps-1:
+                    err1+=1
+                    print "FN", i, freq[i]
             else:
-                stop-=1
-            if stop<=0:
-                break
-        freq[(SP.nonzero(optw)[0])]+=1
-        weight=weight+SP.absolute(optw)
-    err1=0
-    err2=0
-    for i in xrange(n_f):
-        if i in idx:
-            if freq[i]<19:
-                err1+=1
-                print "FN", i, freq[i]
-        else:
-            if freq[i]>=19:
-                err2+=1
-                print "FP", i, freq[i]
-    
-    result_ss = [(idx, freq[idx], weight[idx]) for idx in xrange(n_f)]
-    result_ss2.sort(key=lambda item: (-item[1], list(-item[2]), item[0]))
-    with open(ypheno_file.replace('.csv', '_L_result.csv'), 'w') as result_file:
-        result_writer = csv.writer(result_file)
-        for item in result_ss2:
-            result_writer.writerow((item[0], item[1]))
+                if freq[i]>=n_reps-1:
+                    err2+=1
+                    print "FP", i, freq[i]
+        
+        result_ss = [(idx, freq[idx], weight[idx]) for idx in xrange(n_f)]
+        result_ss.sort(key=lambda item: (-item[1], list(-item[2]), item[0]))
+        with open(ypheno_file.replace('.csv', '_L_result.csv'), 'w') as result_file:
+            result_writer = csv.writer(result_file)
+            for item in result_ss:
+                result_writer.writerow((item[0], item[1]))
 
+    if use_group_lasso:
+        freq=SP.zeros(n_f)
+        weight=SP.zeros(n_f)
+        for k in range(20):
+            opterr=10000
+            optw=0
+            stop=2
+            w0=0
+            nm={}
+            mu=muinit
+            train_idx = SP.random.permutation(SP.arange(n_s))
+            for j in range(20):
+                mu*=ps_step
+                train1_idx=train_idx[:int(n_s*0.8)]
+                valid_idx=train_idx[int(n_s*0.8):]
+                res=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,mu2,group,w0=w0,null_model=nm)
+                w0=res['weights']
+                nm=res['null_model']
+                yhat = lmm_lasso.predict(y[train1_idx],X[train1_idx,:],X[valid_idx,:],K[train1_idx][:,train1_idx],K[valid_idx][:,train1_idx],res['ldelta0'],w0)
+                err = LA.norm(yhat-y[valid_idx])
+                print mu, err
+                if err<opterr:
+                    optw=w0
+                    opterr=err
+                    stop=2
+                else:
+                    stop-=1
+                if stop<=0:
+                    break
+            freq[(SP.nonzero(optw)[0])]+=1
+            weight=weight+SP.absolute(optw)
+        err1=0
+        err2=0
+        for i in xrange(n_f):
+            if i in idx:
+                if freq[i]<n_reps-1:
+                    err1+=1
+                    print "FN", i, freq[i]
+            else:
+                if freq[i]>=n_reps-1:
+                    err2+=1
+                    print "FP", i, freq[i]
+        
+        result_ss = [(idx, freq[idx], weight[idx]) for idx in xrange(n_f)]
+        result_ss.sort(key=lambda item: (-item[1], list(-item[2]), item[0]))
+        with open(ypheno_file.replace('.csv', '_L_result.csv'), 'w') as result_file:
+            result_writer = csv.writer(result_file)
+            for item in result_ss:
+                result_writer.writerow((item[0], item[1]))
     
