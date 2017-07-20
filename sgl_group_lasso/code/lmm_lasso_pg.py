@@ -12,46 +12,7 @@ import sys
 import numpy as NP
 from datetime import datetime
 
-
-def stability_selection(X,K,y,mu,mu2,group,n_reps,f_subset,**kwargs):
-    """
-    run stability selection
-
-    Input:
-    X: SNP matrix: n_s x n_f
-    y: phenotype:  n_s x 1
-    K: kinship matrix: n_s x n_s
-    mu: l1-penalty
-
-    n_reps:   number of repetitions
-    f_subset: fraction of datasets that is used for creating one bootstrap
-
-    output:
-    selection frequency for all SNPs: n_f x 1
-    """
-    time_start = time.time()
-    [n_s,n_f] = X.shape
-    n_subsample = int(SP.ceil(f_subset * n_s))
-    freq = SP.zeros(n_f)
-    weight = SP.zeros((n_f, n_f, 1))
-    
-    for i in range(n_reps):
-        print 'Iteration %d'%i
-        idx = SP.random.permutation(n_s)[:n_subsample]
-        res = train(X[idx],K[idx][:,idx],y[idx],mu,mu2,group,**kwargs)
-        snp_idx = (res['weights']!=0).flatten()
-        weight[snp_idx] += NP.abs(res['weights'])
-        freq[snp_idx] += 1
-    
-    for i in xrange(len(freq)):
-        if freq[i] > 0:
-            weight[i] = weight[i] / freq[i]
-    time_end = time.time()
-    time_diff = time_end - time_start
-    sys.stderr.write( '{} time: {:.2f}s'.format(datetime.now(), time_diff) )
-    return freq, weight
-
-def train(X,K,y,mu,mu2,group=[[0,1],[2,3,4]],numintervals=100,ldeltamin=-5,ldeltamax=5,rho=1,alpha=1,debug=False):
+def train(X,K,y,mu,mu2,group,numintervals=100,ldeltamin=-5,ldeltamax=5,debug=False,w0=0,null_model={}):
     """
     train linear mixed model lasso
 
@@ -63,8 +24,6 @@ def train(X,K,y,mu,mu2,group=[[0,1],[2,3,4]],numintervals=100,ldeltamin=-5,ldelt
     numintervals: number of intervals for delta linesearch
     ldeltamin: minimal delta value (log-space)
     ldeltamax: maximal delta value (log-space)
-    rho: augmented Lagrangian parameter for Lasso solver
-    alpha: over-relatation parameter (typically ranges between 1.0 and 1.8) for Lasso solver
 
     Output:
     results
@@ -79,7 +38,17 @@ def train(X,K,y,mu,mu2,group=[[0,1],[2,3,4]],numintervals=100,ldeltamin=-5,ldelt
         y = SP.reshape(y,(n_s,1))
 
     # train null model
-    S,U,ldelta0,monitor_nm = train_nullmodel(y,K,numintervals,ldeltamin,ldeltamax,debug=debug)
+    if null_model=={}:
+        S,U,ldelta0,monitor_nm = train_nullmodel(y,K,numintervals,ldeltamin,ldeltamax,debug=debug)
+        null_model['S']=S
+        null_model['U']=U
+        null_model['d']=ldelta0
+        null_model['m']=monitor_nm
+    else:
+        S=null_model['S']
+        U=null_model['U']
+        ldelta0=null_model['d']
+        monitor_nm=null_model['m']
     
     # train lasso on residuals
     delta0 = SP.exp(ldelta0)
@@ -90,17 +59,18 @@ def train(X,K,y,mu,mu2,group=[[0,1],[2,3,4]],numintervals=100,ldeltamin=-5,ldelt
     SUy = SP.dot(U.T,y)
     SUy = SUy * SP.reshape(Sdi_sqrt,(n_s,1))
     
-    w= train_lasso(SUX,SUy,mu,mu2,group,rho,alpha,debug=debug)
+    w=train_lasso(SUX,SUy,mu*(1-mu2),mu2*mu,group,debug=debug,w0=w0)
 
     time_end = time.time()
     time_diff = time_end - time_start
-    sys.stderr.write( '{} time: {:.2f}s\t'.format(datetime.now(), time_diff) )
+    print 'time %.2fs'%(time_diff)
 
     res = {}
     res['ldelta0'] = ldelta0
     res['weights'] = w
     res['time'] = time_diff
     res['monitor_nm'] = monitor_nm
+    res['null_model']=null_model
     return res
 
 
@@ -149,7 +119,7 @@ def predict(y_t,X_t,X_v,K_tt,K_vt,ldelta,w):
 helper functions
 """
 
-def train_lasso(X,y,mu,mu2,group,rho=1,alpha=1,max_iter=1000,abstol=1E-4,reltol=1E-2,zero_threshold=1E-3,debug=False):
+def train_lasso(X,y,mu,mu2,group,max_iter=2000,zero_threshold=1E-3,debug=False,w0=0):
     """
     train lasso via PG:
     min_w  0.5*sum((y-Xw)**2) + mu*|z| + mu2*|z|_2
@@ -166,39 +136,44 @@ def train_lasso(X,y,mu,mu2,group,rho=1,alpha=1,max_iter=1000,abstol=1E-4,reltol=
 
     # init
     [n_s,n_f] = X.shape
-    w = SP.zeros((n_f,1))
-    w_old = w
+    if type(w0)==type(0):
+        w = SP.zeros((n_f,1))
+    else:
+        w = w0
+    wold = w
     curval=0.5*((SP.dot(X,w)-y)**2).sum()
-    gamma=1 # learning rate
     t=1
-    t_old=0
-    for i in range(max_iter):
-        alf=(t_old-1.0)/t
-        v=(1+alf)*w-alf*w_old
+    tt=1
+    tto=0
+    for i in xrange(max_iter):
+        alf=(tto-1.0)/tt
+        v=(1+alf)*w-alf*wold
         
         curval=0.5*((SP.dot(X,v)-y)**2).sum()
         grad=SP.dot(X.transpose(),(y-SP.dot(X,v)))
-        wn=v+gamma*grad
-        wn=proximal_gradient(wn,mu*gamma,mu2*gamma,group)
+        wn=v+t*grad
+        wn=soft_thresholding(wn,mu*t,mu2*t,group)
         newval=0.5*((SP.dot(X,wn)-y)**2).sum()
+        if t<0.8:
+            t/=0.8
         while True:
-            testls=SP.dot((gamma*grad+0.5*(v-wn))[:,0],
+            testls=SP.dot((t*grad+0.5*(v-wn))[:,0],
                           (v-wn)[:,0])
-            if testls+gamma*(curval-newval)>=0:
+            if testls+t*(curval-newval)>=0:
                 break
-            gamma*=0.9;
-            wn=v+gamma*grad
-            wn=proximal_gradient(wn,mu*gamma,mu2*gamma,group)
+            t*=0.9
+            wn=v+t*grad
+            wn=soft_thresholding(wn,mu*t,mu2*t,group)
             newval=0.5*((SP.dot(X,wn)-y)**2).sum()
         #print t
-        if LA.norm(v-wn)<zero_threshold*gamma:
+        if LA.norm(v-wn)<zero_threshold*t:
             break
-        w_old=w
+        wold=w
         w=wn
 
-        t_old=t
-        t=0.5*(1+(1+4*t**2)**0.5)
-    print '\nnumber of iteration: ' + str(i)
+        tto=tt
+        tt=0.5*(1+(1+4*tt**2)**0.5)
+    print i
     
     w[SP.absolute(w)<zero_threshold]=0
 
@@ -304,7 +279,7 @@ def factor(X,rho):
     return U
 
 
-def proximal_gradient(w,kappa,kappa2,gp):
+def soft_thresholding(w,kappa,kappa2,gp):
     """
     Performs elementwise soft thresholding for each entry w_i of the vector w:
     s_i= argmin_{s_i}  rho*abs(s_i) + rho/2*(x_i-s_i) **2
@@ -319,42 +294,18 @@ def proximal_gradient(w,kappa,kappa2,gp):
     """
     n_f = w.shape[0]
     zeros = SP.zeros((n_f,1))
-    #s = NP.max(SP.hstack((w-kappa,zeros)),axis=1) - NP.max(SP.hstack((-w-kappa,zeros)),axis=1)
-    s = NP.squeeze(NP.sign(w),1) * NP.max(SP.hstack((abs(w) - kappa, zeros)), axis=1)
-
-
-
-    for i in xrange(len(gp)):
-        vgn=SP.dot(s[gp[i][0]:gp[i][1]],s[gp[i][0]:gp[i][1]])**0.5#this is 2 times faster than LA.norm 
-        if vgn == 0: ratio = 0
-        else: ratio = max((vgn-kappa2)/vgn, 0)
-#        if vgn>kappa2:
-#            ratio=(vgn-kappa2)/vgn
-#        else:
-#            ratio=0
+    s = NP.max(SP.hstack((w-kappa,zeros)),axis=1) - NP.max(SP.hstack((-w-kappa,zeros)),axis=1)
+    vgn = [(SP.dot(s[x[0]:x[1]],s[x[0]:x[1]])/(x[1]-x[0]))**0.5 for x in gp]
+    for i in xrange(len(gp)): 
+        if vgn[i]>kappa2:
+            ratio=(vgn[i]-kappa2)/vgn[i]
+        else:
+            ratio=0
         s[gp[i][0]:gp[i][1]]=ratio*s[gp[i][0]:gp[i][1]]
     s = SP.reshape(s,(n_f,1))
     return s
 
 
-def lasso_obj(X,y,w,mu,mu2,gp):
-    """
-    evaluates lasso objective: 0.5*sum((y-Xw)**2) + mu*|z|
-
-    Input:
-    X: design matrix: n_s x n_f
-    y: outcome:  n_s x 1
-    mu: l1-penalty parameter
-    w: weights: n_f x 1
-    z: slack variables: n_fx1
-
-    Output:
-    obj
-    """
-    r=0.5*((SP.dot(X,w)-y)**2).sum() + mu*SP.absolute(w).sum()
-    for group in gp:
-        r+=LA.norm(w[group[0]:group[1]])*mu2
-    return r
 
 
     
