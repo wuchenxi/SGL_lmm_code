@@ -161,15 +161,7 @@ if __name__ == '__main__':
             weight=weight+SP.absolute(optw)
         err1=0
         err2=0
-        for i in xrange(n_f):
-            if i in idx:
-                if freq[i]<n_reps-1:
-                    err1+=1
-                    print "FN", i, freq[i]
-            else:
-                if freq[i]>=n_reps-1:
-                    err2+=1
-                    print "FP", i, freq[i]
+
         
         result_ss = [(idx, freq[idx], weight[idx]) for idx in xrange(n_f)]
         result_ss.sort(key=lambda item: (-item[1], list(-item[2]), item[0]))
