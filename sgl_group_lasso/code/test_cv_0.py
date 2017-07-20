@@ -81,7 +81,7 @@ if __name__ == '__main__':
     if use_lasso:
         freq=SP.zeros(n_f)
         weight=SP.zeros(n_f)
-        for k in range(20):
+        for k in range(n_reps):
             opterr=10000
             optw=0
             stop=2
@@ -131,7 +131,7 @@ if __name__ == '__main__':
     if use_group_lasso:
         freq=SP.zeros(n_f)
         weight=SP.zeros(n_f)
-        for k in range(20):
+        for k in range(n_reps):
             opterr=10000
             optw=0
             stop=2
