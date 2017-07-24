@@ -1,6 +1,3 @@
-"""
-"""
-
 import csv
 import scipy as SP
 import scipy.linalg as LA
@@ -81,6 +78,7 @@ if __name__ == '__main__':
     if use_lasso:
         freq=SP.zeros(n_f)
         weight=SP.zeros(n_f)
+        score=SP.zeros(n_f)
         for k in range(n_reps):
             opterr=10000
             optw=0
@@ -103,6 +101,7 @@ if __name__ == '__main__':
                     optw=w0
                     opterr=err
                     stop=2
+                    score[(SP.nonzero(w0)[0])]+=1
                 else:
                     stop-=1
                 if stop<=0:
@@ -110,15 +109,16 @@ if __name__ == '__main__':
             freq[(SP.nonzero(optw)[0])]+=1
             weight=weight+SP.absolute(optw)
         
-        result_ss = [(idx, freq[idx], weight[idx]) for idx in xrange(n_f)]
-        result_ss.sort(key=lambda item: (-item[1], list(-item[2]), item[0]))
+        result_ss = [(idx, freq[idx], score[idx], weight[idx]) for idx in xrange(n_f)]
+        result_ss.sort(key=lambda item: (-item[1], -item[2], list(-item[3]), item[0]))
         with open(ypheno_file.replace('.csv', '_L_result.csv'), 'w') as result_file:
             result_writer = csv.writer(result_file)
             for item in result_ss:
-                result_writer.writerow((item[0], item[1]))
+                result_writer.writerow((item[0], item[1], item[2]))
 
     if use_group_lasso:
         freq=SP.zeros(n_f)
+        score=SP.zeros(n_f)
         weight=SP.zeros(n_f)
         for k in range(n_reps):
             opterr=10000
@@ -142,6 +142,7 @@ if __name__ == '__main__':
                     optw=w0
                     opterr=err
                     stop=2
+                    score[(SP.nonzero(w0)[0])]+=1
                 else:
                     stop-=1
                 if stop<=0:
@@ -149,10 +150,10 @@ if __name__ == '__main__':
             freq[(SP.nonzero(optw)[0])]+=1
             weight=weight+SP.absolute(optw)
         
-        result_ss = [(idx, freq[idx], weight[idx]) for idx in xrange(n_f)]
-        result_ss.sort(key=lambda item: (-item[1], list(-item[2]), item[0]))
+        result_ss = [(idx, freq[idx], score[idx], weight[idx]) for idx in xrange(n_f)]
+        result_ss.sort(key=lambda item: (-item[1], -item[2], list(-item[3]), item[0]))
         with open(ypheno_file.replace('.csv', '_GroupL_result.csv'), 'w') as result_file:
             result_writer = csv.writer(result_file)
             for item in result_ss:
-                result_writer.writerow((item[0], item[1]))
+                result_writer.writerow((item[0], item[1], item[2]))
     
