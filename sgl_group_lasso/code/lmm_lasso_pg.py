@@ -68,6 +68,13 @@ def train(X,K,y,mu,mu2,group,numintervals=100,ldeltamin=-5,ldeltamax=5,debug=Fal
     res = {}
     res['ldelta0'] = ldelta0
     res['weights'] = w
+    w1 = SP.zeros(n_f)
+    w=w.reshape(n_f)
+    idx = SP.nonzero(w)
+    if len(idx)>0:
+        w1[idx] = SP.squeeze(LA.lstsq(SP.squeeze(SUX[:,(idx)],
+                                                 axis=1),SUy)[0],axis=1)
+    res['lstsq'] = w1
     res['time'] = time_diff
     res['monitor_nm'] = monitor_nm
     res['null_model']=null_model
