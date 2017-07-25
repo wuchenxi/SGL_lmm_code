@@ -54,7 +54,7 @@ if __name__ == '__main__':
     # init
     debug = False
 
-    muinit = 30
+    muinit = 80
     mu2 = 0.1
     ps_step = 0.9
     n_reps=3
@@ -82,7 +82,7 @@ if __name__ == '__main__':
         for k in range(n_reps):
             opterr=10000
             optw=0
-            stop=2
+            stop=4
             w0=0
             nm={}
             mu=muinit
@@ -94,15 +94,16 @@ if __name__ == '__main__':
                 res=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,0,[],w0=w0,null_model=nm)
                 w0=res['weights']
                 nm=res['null_model']
-                yhat = lmm_lasso.predict(y[train1_idx],X[train1_idx,:],X[valid_idx,:],K[train1_idx][:,train1_idx],K[valid_idx][:,train1_idx],res['ldelta0'],w0)
+                yhat = lmm_lasso.predict(y[train1_idx],X[train1_idx,:],X[valid_idx,:],
+                                         K[train1_idx][:,train1_idx],K[valid_idx][:,train1_idx],res['ldelta0'],res['lstsq'])
                 err = LA.norm(yhat-y[valid_idx])
                 print mu, err
                 if err<opterr:
                     optw=w0
                     opterr=err
-                    stop=2
+                    stop=4
                     score[(SP.nonzero(w0)[0])]+=1
-                else:
+                elif err>opterr:
                     stop-=1
                 if stop<=0:
                     break
@@ -123,7 +124,7 @@ if __name__ == '__main__':
         for k in range(n_reps):
             opterr=10000
             optw=0
-            stop=2
+            stop=4
             w0=0
             nm={}
             mu=muinit
@@ -135,15 +136,16 @@ if __name__ == '__main__':
                 res=lmm_lasso.train(X[train1_idx],K[train1_idx][:,train1_idx],y[train1_idx],mu,mu2,group,w0=w0,null_model=nm)
                 w0=res['weights']
                 nm=res['null_model']
-                yhat = lmm_lasso.predict(y[train1_idx],X[train1_idx,:],X[valid_idx,:],K[train1_idx][:,train1_idx],K[valid_idx][:,train1_idx],res['ldelta0'],w0)
+                yhat = lmm_lasso.predict(y[train1_idx],X[train1_idx,:],X[valid_idx,:],K[train1_idx][:,train1_idx]
+                                         ,K[valid_idx][:,train1_idx],res['ldelta0'],res['lstsq'])
                 err = LA.norm(yhat-y[valid_idx])
                 print mu, err
                 if err<opterr:
                     optw=w0
                     opterr=err
-                    stop=2
+                    stop=4
                     score[(SP.nonzero(w0)[0])]+=1
-                else:
+                elif err>opterr:
                     stop-=1
                 if stop<=0:
                     break
