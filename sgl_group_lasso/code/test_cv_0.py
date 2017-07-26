@@ -54,7 +54,7 @@ if __name__ == '__main__':
     # init
     debug = False
 
-    muinit = 80
+    muinit = 1000
     mu2 = 0.1
     ps_step = 0.9
     n_reps=3
